@@ -36,7 +36,7 @@ function getComputerChoice() {
 // write a func named getHumanChoice
 // it will return one of the valid choices from the user inputs 
 function getHumanChoice() {
-    let humanChoice = prompt("enter your choice", "enter here")
+    let humanChoice = prompt("enter your choice")
     return humanChoice;
 }
 
@@ -91,4 +91,22 @@ function playRound(humnChoice, compChoice) {
     // write a func named playGame
     // it will call playRound func 5 time (rounds)
     // it will also keep track of the scores and declare a winner in the end 
+function playGame(){
+    for(let i = 0; i < 5; i++){
+        playRound(getHumanChoice(), getComputerChoice());
+    }
 
+    console.log(`computer: ${computerScore} you: ${humanScore}`);
+
+    if (humanScore > computerScore){
+        console.log("You win! Great job")
+    }
+    else if (humanScore < computerScore){
+        console.log("Computer win! hard luck")
+    }
+    else{
+        console.log("it is a tie!")
+    }
+}
+
+playGame();

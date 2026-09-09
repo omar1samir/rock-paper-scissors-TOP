@@ -46,9 +46,49 @@ function getHumanChoice() {
 // make the humanChoice parameter case insensitive
 // write code to declare a winner 
 // increment the winner score (humanScore or computerScore)
+function playRound(humnChoice, compChoice) {
+    let human = humnChoice.toLowerCase();
+    let computer = compChoice;
 
+    if (human === computer) {
+        console.log(`It's a tie! Both chose ${human}.`);
+    } else if (
+        (human === "rock" && computer === "scissors") ||
+        (human === "paper" && computer === "rock") ||
+        (human === "scissors" && computer === "paper")
+    ) {
+        humanScore++;
+        console.log(`You win! ${human} beats ${computer}.`);
+    } else {
+        computerScore++;
+        console.log(`You lose! ${computer} beats ${human}.`);
+    }
+}
+
+// TEST | works well
+// // Test 1: Tie scenario
+// console.log("--- Test 1: Tie ---");
+// playRound("rock", "rock");
+
+// // Test 2: Case sensitivity test (uppercase/mixed case input)
+// console.log("--- Test 2: Case Insensitivity ---");
+// playRound("ROCK", "scissors"); // Human should win
+
+// // Test 3: Human winning scenarios
+// console.log("--- Test 3: Human Wins ---");
+// playRound("paper", "rock"); // Human should win
+// playRound("Scissors", "paper"); // Human should win
+
+// // Test 4: Computer winning scenarios
+// console.log("--- Test 4: Computer Wins ---");
+// playRound("rock", "paper"); // Computer should win
+// playRound("paper", "scissors"); // Computer should win
+
+// // Check the accumulated scores after these tests
+// console.log(`Current Scores -> Human: ${humanScore}, Computer: ${computerScore}`);
 
 // Write the logic to play the entire game
-// write a func named playGame
-// it will call playRound func 5 time (rounds)
-// it will also keep track of the scores and declare a winner in the end 
+    // write a func named playGame
+    // it will call playRound func 5 time (rounds)
+    // it will also keep track of the scores and declare a winner in the end 
+

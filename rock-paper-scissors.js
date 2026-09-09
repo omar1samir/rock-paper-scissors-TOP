@@ -35,7 +35,10 @@ function getComputerChoice() {
 // write the logic for the human choice
 // write a func named getHumanChoice
 // it will return one of the valid choices from the user inputs 
-
+function getHumanChoice() {
+    let humanChoice = prompt("enter your choice", "enter here")
+    return humanChoice;
+}
 
 // Write the logic to play a single round
 // create a func named playRound

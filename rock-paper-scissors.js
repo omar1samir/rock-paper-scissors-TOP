@@ -29,43 +29,81 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-// TEST | it works
+// #region TEST | it works
 // console.log(getComputerChoice());
 
 // write the logic for the human choice
 // write a func named getHumanChoice
 // it will return one of the valid choices from the user inputs 
-function getHumanChoice() {
-    let humanChoice = prompt("enter your choice")
-    return humanChoice;
-}
+// function getHumanChoice() {
+//     let humanChoice = prompt("enter your choice")
+//     return humanChoice;
+// }
+// #endregion
+
+// FOR R.P.S.UI ////////////////////////
+// selector for each button
+const rButton = document.querySelector(".rock");
+const pButton = document.querySelector(".paper");
+const sButton = document.querySelector(".scissors");
+
+// select the result dev
+const div = document.querySelector(".result")
+
+// select the score div 
+const scoreDiv = document.querySelector(".score");
+
+// create a para to display the winner
+const para = document.querySelector(".winner");
+
+// eventListener for each button
+rButton.addEventListener("click", () => playRound("rock", getComputerChoice()));
+pButton.addEventListener("click", () => playRound("paper", getComputerChoice()));
+sButton.addEventListener("click", () => playRound("scissors", getComputerChoice()));
 
 // Write the logic to play a single round
 // create a func named playRound
 // it takes two parameters: humanChoice, computerChoice
 // make the humanChoice parameter case insensitive
-// write code to declare a winner 
+// write code to declare a winner
 // increment the winner score (humanScore or computerScore)
-function playRound(humnChoice, compChoice) {
-    let human = humnChoice.toLowerCase();
-    let computer = compChoice;
+function playRound(humnChoice, CompChoice) {
+    const human = humnChoice;
+    const computer = CompChoice;
+
+    // make the p to display the result in
+    let result = '';
 
     if (human === computer) {
-        console.log(`It's a tie! Both chose ${human}.`);
+        result = `It's a tie! Both chose ${human}.`;
     } else if (
         (human === "rock" && computer === "scissors") ||
         (human === "paper" && computer === "rock") ||
         (human === "scissors" && computer === "paper")
     ) {
         humanScore++;
-        console.log(`You win! ${human} beats ${computer}.`);
+        result = `You win! ${human} beats ${computer}.`;
     } else {
         computerScore++;
-        console.log(`You lose! ${computer} beats ${human}.`);
+        result = `You lose! ${computer} beats ${human}.`;
     }
+
+    div.textContent = result;
+
+    // display the score
+    scoreDiv.textContent = `Computer: ${computerScore} | You: ${humanScore}.`;
+
+    // announce the winner
+    if(computerScore === 5 ){
+        para.textContent = `Hard luck, The computer wins` 
+    }
+    else if( humanScore === 5){
+        para.textContent = `You win!!, Great job`
+    }
+
 }
 
-// TEST | works well
+// #region TEST | works well
 // // Test 1: Tie scenario
 // console.log("--- Test 1: Tie ---");
 // playRound("rock", "rock");
@@ -86,27 +124,10 @@ function playRound(humnChoice, compChoice) {
 
 // // Check the accumulated scores after these tests
 // console.log(`Current Scores -> Human: ${humanScore}, Computer: ${computerScore}`);
+// #endregion
 
-// Write the logic to play the entire game
-    // write a func named playGame
-    // it will call playRound func 5 time (rounds)
-    // it will also keep track of the scores and declare a winner in the end 
-function playGame(){
-    for(let i = 0; i < 5; i++){
-        playRound(getHumanChoice(), getComputerChoice());
-    }
+// (DELETED)Write the logic to play the entire game
+// write a func named playGame
+// it will call playRound func 5 time (rounds)
+// it will also keep track of the scores and declare a winner in the end 
 
-    console.log(`computer: ${computerScore} you: ${humanScore}`);
-
-    if (humanScore > computerScore){
-        console.log("You win! Great job")
-    }
-    else if (humanScore < computerScore){
-        console.log("Computer win! hard luck")
-    }
-    else{
-        console.log("it is a tie!")
-    }
-}
-
-playGame();
